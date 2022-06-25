@@ -1,7 +1,7 @@
 // dom elements
 const grid = document.querySelector('.grid');
 
-const gridSize = 25;
+const gridSize = 30;
 
 // Set Grid Size
 grid.style.width = gridSize * 20 + "px";

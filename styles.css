@@ -1,7 +1,27 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://thumbs.dreamstime.com/b/red-brown-block-brick-wall-beautifully-arranged-texture-backgrou-background-110259074.jpg');
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 60px;
+    color: #eee;
+    text-shadow: 4px 8px rgba(0, 0, 0, 0.4);
+}
+
 .grid {
-    border: solid black 1px;
+    border-radius: 20px;
     display: flex;
     flex-wrap: wrap;
+    background-image: url('https://thumbs.dreamstime.com/b/soccer-football-grass-field-striped-soccer-football-grass-field-texture-background-copy-space-108344251.jpg');
+    resize: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .grid div {
@@ -10,7 +30,8 @@
 }
 
 .snake {
-    background-color: brown;
+    background-color: gold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .snake-head-top {
@@ -30,5 +51,9 @@
 }
 
 .food {
-    background-color: green;
+    background-color: pink;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 8px;
+    width: 10px !important;
+    height: 10px !important;
 }
