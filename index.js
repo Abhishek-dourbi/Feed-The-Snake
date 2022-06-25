@@ -13,6 +13,31 @@ const squares = document.querySelectorAll('.grid div');
 
 squares[currentIndexArr[0]].classList.add('snake');
 
+// Draw food randomly on the grid
+function drawFood() {
+    const emptySquares = document.querySelectorAll('.grid div:not(.snake)');
+    const randomNum = Math.floor(Math.random() * emptySquares.length);
+    emptySquares[randomNum].classList.add('food');
+}
+
+drawFood();
+
+// Check for Food
+function checkForFood() {
+    const snakeHeadElement = squares[currentIndexArr[currentIndexArr.length - 1]];
+    if(snakeHeadElement.classList.contains('food')) {
+        snakeHeadElement.classList.remove('food');
+        currentIndexArr.push(currentIndexArr[currentIndexArr.length - 1] + interval);
+        addSnakeHead();
+        drawFood();
+    }
+}
+
+// Add Snake Head
+function addSnakeHead() {
+    squares[currentIndexArr[currentIndexArr.length - 1]].classList.add('snake');
+}
+
 // Change Snake Direction
 function changeSnakeDirection(e) {
     switch(e.key) {
@@ -57,8 +82,9 @@ function moveSnake() {
     }
     currentIndexArr = res;
 
-    // Add Snake Head
-    squares[currentIndexArr[currentIndexArr.length - 1]].classList.add('snake');
+    addSnakeHead();
+
+    checkForFood();
 }
 
 snakeId = setInterval(moveSnake, 1000);
