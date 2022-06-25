@@ -2,7 +2,7 @@ const grid = document.querySelector('.grid');
 const gridSize = 25;
 let currentIndexArr = [Math.pow(gridSize, 2) - Math.floor(gridSize * 1.5) - 1];
 let interval = 1;
-let snakeId;
+let snakeIntervalId;
 
 for(let i = 0; i < Math.pow(gridSize, 2); i++) {
     const square = document.createElement('div');
@@ -30,6 +30,14 @@ function checkForFood() {
         currentIndexArr.push(currentIndexArr[currentIndexArr.length - 1] + interval);
         addSnakeHead();
         drawFood();
+    }
+}
+
+// Check For Snake Tangle
+function checkForTangle() {
+    if(squares[currentIndexArr[currentIndexArr.length - 1] + interval].classList.contains('snake')) {
+        alert('Game Over');
+        clearInterval(snakeIntervalId);
     }
 }
 
@@ -68,6 +76,8 @@ document.addEventListener('keydown', changeSnakeDirection);
 
 // Move Snake
 function moveSnake() {
+    checkForTangle();
+
     // Remove Snake Tail
     squares[currentIndexArr[0]].classList.remove('snake');
 
@@ -87,4 +97,4 @@ function moveSnake() {
     checkForFood();
 }
 
-snakeId = setInterval(moveSnake, 1000);
+snakeIntervalId = setInterval(moveSnake, 100);
