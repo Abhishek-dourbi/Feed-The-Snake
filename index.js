@@ -1,5 +1,6 @@
 // dom elements
 const grid = document.querySelector('.grid');
+const scoreDisplay = document.querySelector('.score');
 
 const gridSize = 30;
 
@@ -7,6 +8,7 @@ const gridSize = 30;
 grid.style.width = gridSize * 20 + "px";
 grid.style.height = gridSize * 20 + "px";
 
+let score = 0;
 let currentIndexArr = [Math.pow(gridSize, 2) - Math.floor(gridSize * 1.5) - 1];
 let interval = 1;
 let snakeIntervalId;
@@ -27,6 +29,11 @@ const squares = document.querySelectorAll('.grid div');
 
 squares[currentIndexArr[0]].classList.add('snake');
 
+// display Score
+function displayScore() {
+    scoreDisplay.innerHTML = score;   
+}
+
 // Draw food randomly on the grid
 function drawFood() {
     const emptySquares = document.querySelectorAll('.grid div:not(.snake)');
@@ -42,6 +49,8 @@ function checkForFood() {
     if(snakeHeadElement.classList.contains('food')) {
         snakeHeadElement.classList.remove('food');
         removeSnakeHeadStyle();
+        score++;
+        displayScore();
         currentIndexArr.push(currentIndexArr[currentIndexArr.length - 1] + interval);
         addSnakeHead();
         drawFood();
@@ -51,7 +60,9 @@ function checkForFood() {
 // Check For Snake Tangle
 function checkForTangle() {
     if(squares[currentIndexArr[currentIndexArr.length - 1] + interval].classList.contains('snake')) {
-        alert('Game Over');
+        alert('Game Over, Your Score was ' + score);
+        score = 0;
+        displayScore();
         clearInterval(snakeIntervalId);
     }
 }
