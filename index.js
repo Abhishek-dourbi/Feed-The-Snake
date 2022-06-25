@@ -2,6 +2,11 @@
 const grid = document.querySelector('.grid');
 
 const gridSize = 25;
+
+// Set Grid Size
+grid.style.width = gridSize * 20 + "px";
+grid.style.height = gridSize * 20 + "px";
+
 let currentIndexArr = [Math.pow(gridSize, 2) - Math.floor(gridSize * 1.5) - 1];
 let interval = 1;
 let snakeIntervalId;
